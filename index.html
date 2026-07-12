@@ -210,6 +210,11 @@
     #copy-toast {
       transition: opacity 0.25s ease, transform 0.25s ease;
     }
+
+    /* x.png is white logo on transparent — show as-is on dark circles */
+    .x-icon {
+      filter: none;
+    }
   </style>
 </head>
 <body class="font-body text-white antialiased overflow-x-hidden">
@@ -243,8 +248,8 @@
           <a href="https://t.me/sollifeportal" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Telegram">
             <img src="tg.png" alt="Telegram" class="w-9 h-9 md:w-10 md:h-10 rounded-full" />
           </a>
-          <a href="https://x.com/sollifex" target="_blank" rel="noopener noreferrer" class="social-btn w-9 h-9 md:w-10 md:h-10 rounded-full bg-white flex items-center justify-center hover:scale-105 transition-transform" aria-label="X / Twitter">
-            <img src="x.png" alt="X / Twitter" class="w-4 h-4 md:w-5 md:h-5 object-contain" />
+          <a href="https://x.com/sollifex" target="_blank" rel="noopener noreferrer" class="social-btn w-9 h-9 md:w-10 md:h-10 rounded-full bg-black border border-white/10 flex items-center justify-center overflow-hidden hover:scale-105 transition-transform" aria-label="X / Twitter">
+            <img src="x.png" alt="X / Twitter" class="w-4 h-4 md:w-5 md:h-5 object-contain x-icon" />
           </a>
           <a
             href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=DpCJrRb69shT2srV3YnFScKe1C8EUXfhP9nU6L9Xpump"
@@ -690,8 +695,8 @@
           rel="noopener noreferrer"
           class="group flex items-center gap-4 w-full sm:w-auto rounded-2xl border border-sol-purple/25 bg-sol-card hover:border-white/30 px-6 py-5 transition-all card-hover"
         >
-          <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-            <img src="x.png" alt="X / Twitter" class="w-7 h-7" />
+          <div class="w-14 h-14 rounded-full bg-black border border-white/10 flex items-center justify-center shadow-lg overflow-hidden group-hover:scale-110 transition-transform">
+            <img src="x.png" alt="X / Twitter" class="w-7 h-7 object-contain x-icon" />
           </div>
           <div class="text-left">
             <p class="font-display font-bold text-lg">X / Twitter</p>
@@ -745,8 +750,8 @@
           <a href="https://t.me/sollifeportal" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Telegram">
             <img src="tg.png" alt="Telegram" class="w-10 h-10 rounded-full" />
           </a>
-          <a href="https://x.com/sollifex" target="_blank" rel="noopener noreferrer" class="social-btn w-10 h-10 rounded-full bg-white flex items-center justify-center" aria-label="X">
-            <img src="x.png" alt="X" class="w-5 h-5 object-contain" />
+          <a href="https://x.com/sollifex" target="_blank" rel="noopener noreferrer" class="social-btn w-10 h-10 rounded-full bg-black border border-white/10 flex items-center justify-center overflow-hidden" aria-label="X">
+            <img src="x.png" alt="X" class="w-5 h-5 object-contain x-icon" />
           </a>
         </div>
       </div>
@@ -784,8 +789,8 @@
         <img src="tg.png" alt="" class="w-6 h-6" /> TG
       </a>
       <a href="https://x.com/sollifex" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-0.5 text-[10px] text-white/50 hover:text-sol-green">
-        <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center">
-          <img src="x.png" alt="" class="w-3.5 h-3.5 object-contain" />
+        <span class="w-6 h-6 rounded-full bg-black border border-white/10 flex items-center justify-center overflow-hidden">
+          <img src="x.png" alt="" class="w-3.5 h-3.5 object-contain x-icon" />
         </span>
         X
       </a>
