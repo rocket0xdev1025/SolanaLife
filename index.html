@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solana Life | $SOLLIFE — Official Portal</title>
+  <meta name="description" content="Solana Life ($SOLLIFE) — Live free. Stack SOL. Embrace the Solana Life. Buy $SOLLIFE with SOL on Solana." />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            /* Solana brand narrative palette */
+            sol: {
+              purple: '#9945FF',
+              green: '#14F195',
+              dark: '#0D0D12',
+              deeper: '#0A0A0F',
+              card: '#12121A',
+              muted: '#1A1A24',
+            },
+            neon: {
+              cyan: '#14F195',
+              teal: '#00FFA3',
+              blue: '#03E1FF',
+              purple: '#9945FF',
+              pink: '#DC1FFF',
+              violet: '#7B2FFF',
+            },
+          },
+          fontFamily: {
+            display: ['Orbitron', 'system-ui', 'sans-serif'],
+            body: ['Rajdhani', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'glow-green': '0 0 20px rgba(20, 241, 149, 0.4), 0 0 60px rgba(20, 241, 149, 0.15)',
+            'glow-purple': '0 0 20px rgba(153, 69, 255, 0.45), 0 0 60px rgba(153, 69, 255, 0.18)',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+            'gradient-x': 'gradientX 8s ease infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.55' },
+              '50%': { opacity: '1' },
+            },
+            gradientX: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Solana logo narrative: deep void + purple + green */
+    body {
+      background-color: #0A0A0F;
+      background-image:
+        radial-gradient(ellipse 100% 60% at 50% -15%, rgba(153, 69, 255, 0.28), transparent 55%),
+        radial-gradient(ellipse 70% 50% at 100% 40%, rgba(20, 241, 149, 0.1), transparent 50%),
+        radial-gradient(ellipse 60% 45% at 0% 70%, rgba(153, 69, 255, 0.12), transparent 50%),
+        radial-gradient(ellipse 50% 40% at 50% 100%, rgba(20, 241, 149, 0.08), transparent 55%),
+        linear-gradient(180deg, #0A0A0F 0%, #0D0D12 40%, #0A0A0F 100%);
+      min-height: 100vh;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(153, 69, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 241, 149, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #14F195 0%, #9945FF 55%, #DC1FFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-gradient-animated {
+      background: linear-gradient(90deg, #14F195, #03E1FF, #9945FF, #DC1FFF, #14F195);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientX 8s ease infinite;
+    }
+
+    .border-gradient {
+      background: linear-gradient(#12121A, #12121A) padding-box,
+                  linear-gradient(135deg, #14F195, #9945FF, #DC1FFF) border-box;
+      border: 1px solid transparent;
+    }
+
+    .glass {
+      background: rgba(18, 18, 26, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-blur {
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .hero-banner {
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    }
+
+    .ticker-track {
+      animation: ticker 30s linear infinite;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes gradientX {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #14F195 0%, #9945FF 100%);
+      background-size: 200% 200%;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-position: 100% 0;
+      box-shadow: 0 0 30px rgba(20, 241, 149, 0.45), 0 0 50px rgba(153, 69, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-buy {
+      background: linear-gradient(135deg, #14F195 0%, #0fa968 50%, #9945FF 100%);
+      background-size: 200% auto;
+      transition: all 0.3s ease;
+    }
+
+    .btn-buy:hover {
+      background-position: right center;
+      box-shadow: 0 0 28px rgba(20, 241, 149, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-chart {
+      background: linear-gradient(135deg, #9945FF 0%, #DC1FFF 100%);
+      transition: all 0.3s ease;
+    }
+
+    .btn-chart:hover {
+      box-shadow: 0 0 28px rgba(153, 69, 255, 0.55);
+      transform: translateY(-2px);
+    }
+
+    .social-btn {
+      transition: all 0.25s ease;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-3px) scale(1.08);
+      filter: drop-shadow(0 0 12px rgba(20, 241, 149, 0.5));
+    }
+
+    .card-hover {
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 30px rgba(153, 69, 255, 0.28), 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(20, 241, 149, 0.45);
+    }
+
+    .ca-box {
+      background: linear-gradient(135deg, rgba(20, 241, 149, 0.08), rgba(153, 69, 255, 0.1));
+      border: 1px solid rgba(153, 69, 255, 0.35);
+    }
+
+    .chart-frame {
+      border: 1px solid rgba(153, 69, 255, 0.35);
+      box-shadow: 0 0 40px rgba(153, 69, 255, 0.12), inset 0 0 40px rgba(20, 241, 149, 0.03);
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0A0A0F; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #14F195, #9945FF);
+      border-radius: 4px;
+    }
+
+    #copy-toast {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+  </style>
+</head>
+<body class="font-body text-white antialiased overflow-x-hidden">
+
+  <!-- Copy toast -->
+  <div id="copy-toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] opacity-0 pointer-events-none px-5 py-2.5 rounded-full bg-sol-green text-sol-deeper font-display font-bold text-sm shadow-glow-green">
+    CA copied!
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="fixed top-0 inset-x-0 z-50 nav-blur border-b border-sol-purple/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="#home" class="flex items-center gap-3 group">
+          <img src="logo.png" alt="Solana Life logo" class="w-10 h-10 md:w-12 md:h-12 rounded-full ring-2 ring-sol-purple/50 group-hover:ring-sol-green/70 transition-all shadow-glow-purple" />
+          <div class="leading-tight">
+            <span class="font-display font-bold text-lg md:text-xl tracking-wide text-gradient">Solana Life</span>
+            <span class="block text-xs text-sol-green/80 font-semibold tracking-widest">$SOLLIFE</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold tracking-wide uppercase">
+          <a href="#about" class="text-white/70 hover:text-sol-green transition-colors">About</a>
+          <a href="#how-to-buy" class="text-white/70 hover:text-sol-green transition-colors">How to Buy</a>
+          <a href="#chart" class="text-white/70 hover:text-sol-green transition-colors">Chart</a>
+          <a href="#tokenomics" class="text-white/70 hover:text-sol-green transition-colors">Tokenomics</a>
+          <a href="#community" class="text-white/70 hover:text-sol-green transition-colors">Community</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="https://t.me/sollifeportal" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Telegram">
+            <img src="tg.png" alt="Telegram" class="w-9 h-9 md:w-10 md:h-10 rounded-full" />
+          </a>
+          <a href="https://x.com/sollifex" target="_blank" rel="noopener noreferrer" class="social-btn w-9 h-9 md:w-10 md:h-10 rounded-full bg-white flex items-center justify-center hover:scale-105 transition-transform" aria-label="X / Twitter">
+            <img src="x.png" alt="X / Twitter" class="w-4 h-4 md:w-5 md:h-5 object-contain" />
+          </a>
+          <a
+            href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden sm:inline-flex btn-buy text-sol-deeper font-display font-bold text-xs md:text-sm px-4 md:px-5 py-2.5 rounded-full uppercase tracking-wider"
+          >
+            Buy Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="relative pt-16 md:pt-20 min-h-screen flex flex-col">
+    <div class="absolute inset-0 grid-bg opacity-70 pointer-events-none"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[640px] h-[640px] bg-sol-purple/15 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
+    <div class="absolute bottom-10 right-0 w-[400px] h-[400px] bg-sol-green/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="relative w-full overflow-hidden">
+      <img
+        src="banner.png"
+        alt="Solana Life banner"
+        class="hero-banner w-full max-h-[420px] md:max-h-[520px] object-cover object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-sol-deeper via-sol-deeper/50 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 md:-mt-24 pb-16 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sol-purple/40 bg-sol-purple/15 text-sol-green text-xs sm:text-sm font-semibold tracking-widest uppercase mb-6 shadow-glow-purple">
+        <span class="w-2 h-2 rounded-full bg-sol-green animate-pulse"></span>
+        Welcome to Solana Life
+      </div>
+
+      <h1 class="font-display font-black text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tight mb-4">
+        <span class="text-gradient-animated">Solana Life</span>
+      </h1>
+      <p class="font-display text-xl sm:text-2xl md:text-3xl text-white/90 font-semibold mb-3">
+        $SOLLIFE
+      </p>
+      <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-white/60 leading-relaxed mb-8 font-medium">
+        <span class="text-sol-green font-semibold">Solana Life</span> is the lifestyle of the chain that never sleeps.
+        Live free. Stack SOL. Join the <span class="text-sol-purple font-semibold">Solana Life</span> movement.
+      </p>
+
+      <!-- Contract Address -->
+      <div class="max-w-xl mx-auto mb-8">
+        <p class="text-xs uppercase tracking-[0.2em] text-white/40 font-semibold mb-2">Contract Address (CA)</p>
+        <div class="ca-box rounded-2xl px-4 py-3 flex flex-col sm:flex-row items-center gap-3">
+          <code id="ca-address" class="text-sol-green font-mono text-sm sm:text-base font-semibold break-all flex-1 text-center sm:text-left">TBA</code>
+          <button
+            type="button"
+            id="copy-ca-btn"
+            onclick="copyCA()"
+            class="shrink-0 inline-flex items-center gap-2 bg-sol-purple hover:bg-sol-purple/90 text-white font-display font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all shadow-glow-purple"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span id="copy-btn-label">Copy CA</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Primary CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12">
+        <a
+          href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-buy text-sol-deeper font-display font-bold text-sm sm:text-base px-8 py-3.5 rounded-full uppercase tracking-wider w-full sm:w-auto inline-flex items-center justify-center gap-2"
+        >
+          <span>🛒</span> Buy Now
+        </a>
+        <a
+          href="https://dexscreener.com/solana/TBA"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-chart text-white font-display font-bold text-sm sm:text-base px-8 py-3.5 rounded-full uppercase tracking-wider w-full sm:w-auto inline-flex items-center justify-center gap-2"
+        >
+          <span>📈</span> Chart
+        </a>
+        <a
+          href="#how-to-buy"
+          class="inline-flex items-center justify-center gap-2 border border-sol-green/40 hover:border-sol-green bg-sol-green/5 hover:bg-sol-green/10 text-sol-green font-display font-bold text-sm sm:text-base px-8 py-3.5 rounded-full uppercase tracking-wider transition-all w-full sm:w-auto"
+        >
+          How to Buy
+        </a>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto">
+        <div class="border-gradient rounded-2xl p-4 md:p-5 glass">
+          <p class="text-sol-green/70 text-xs uppercase tracking-widest font-semibold mb-1">Project</p>
+          <p class="font-display font-bold text-lg md:text-xl">Solana Life</p>
+        </div>
+        <div class="border-gradient rounded-2xl p-4 md:p-5 glass">
+          <p class="text-sol-purple/90 text-xs uppercase tracking-widest font-semibold mb-1">Ticker</p>
+          <p class="font-display font-bold text-lg md:text-xl">$SOLLIFE</p>
+        </div>
+        <div class="border-gradient rounded-2xl p-4 md:p-5 glass">
+          <p class="text-sol-green/70 text-xs uppercase tracking-widest font-semibold mb-1">Chain</p>
+          <p class="font-display font-bold text-lg md:text-xl">Solana</p>
+        </div>
+        <div class="border-gradient rounded-2xl p-4 md:p-5 glass">
+          <p class="text-sol-purple/90 text-xs uppercase tracking-widest font-semibold mb-1">Buy With</p>
+          <p class="font-display font-bold text-lg md:text-xl">SOL</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TICKER ===== -->
+  <div class="border-y border-sol-purple/20 bg-sol-card/90 overflow-hidden py-3">
+    <div class="ticker-track flex whitespace-nowrap w-max">
+      <div class="flex items-center gap-8 px-4 text-sm font-display font-semibold tracking-wider uppercase">
+        <span class="text-sol-green">Solana Life</span><span class="text-white/20">•</span>
+        <span class="text-sol-purple">$SOLLIFE</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Live Free</span><span class="text-white/20">•</span>
+        <span class="text-sol-green">Stack SOL</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Solana Life</span><span class="text-white/20">•</span>
+        <span class="text-sol-purple">Never Sleep</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Diamond Hands</span><span class="text-white/20">•</span>
+        <span class="text-sol-green">Solana Life</span><span class="text-white/20">•</span>
+        <span class="text-sol-purple">$SOLLIFE</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Live Free</span><span class="text-white/20">•</span>
+        <span class="text-sol-green">Stack SOL</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Solana Life</span><span class="text-white/20">•</span>
+      </div>
+      <div class="flex items-center gap-8 px-4 text-sm font-display font-semibold tracking-wider uppercase" aria-hidden="true">
+        <span class="text-sol-green">Solana Life</span><span class="text-white/20">•</span>
+        <span class="text-sol-purple">$SOLLIFE</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Live Free</span><span class="text-white/20">•</span>
+        <span class="text-sol-green">Stack SOL</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Solana Life</span><span class="text-white/20">•</span>
+        <span class="text-sol-purple">Never Sleep</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Diamond Hands</span><span class="text-white/20">•</span>
+        <span class="text-sol-green">Solana Life</span><span class="text-white/20">•</span>
+        <span class="text-sol-purple">$SOLLIFE</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Live Free</span><span class="text-white/20">•</span>
+        <span class="text-sol-green">Stack SOL</span><span class="text-white/20">•</span>
+        <span class="text-white/70">Solana Life</span><span class="text-white/20">•</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="relative py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="relative flex justify-center">
+          <div class="absolute inset-0 bg-gradient-to-br from-sol-purple/30 to-sol-green/15 rounded-full blur-3xl scale-75"></div>
+          <img
+            src="logo.png"
+            alt="Solana Life"
+            class="relative w-56 h-56 md:w-72 md:h-72 animate-float drop-shadow-[0_0_40px_rgba(153,69,255,0.55)]"
+          />
+        </div>
+
+        <div>
+          <p class="text-sol-green font-display font-semibold text-sm tracking-[0.25em] uppercase mb-3">About Solana Life</p>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl mb-6">
+            This is more than a token.<br />
+            <span class="text-gradient">This is Solana Life.</span>
+          </h2>
+          <p class="text-white/65 text-lg leading-relaxed mb-4">
+            <strong class="text-white">Solana Life ($SOLLIFE)</strong> captures the spirit of building, degening, and thriving on Solana.
+            Low fees. High vibes. Infinite energy — that’s the Solana Life.
+          </p>
+          <p class="text-white/65 text-lg leading-relaxed mb-8">
+            Whether you're stacking bags at 3am or sharing alpha with the community — if you're on Solana, you're living the
+            <span class="text-sol-green font-semibold">Solana Life</span>.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-sol-purple/25 bg-sol-card/90 p-5 card-hover">
+              <div class="text-2xl mb-2">⚡</div>
+              <h3 class="font-display font-bold text-lg mb-1">Lightning Fast</h3>
+              <p class="text-white/50 text-sm">Solana Life moves at Solana speed.</p>
+            </div>
+            <div class="rounded-2xl border border-sol-purple/25 bg-sol-card/90 p-5 card-hover">
+              <div class="text-2xl mb-2">🔥</div>
+              <h3 class="font-display font-bold text-lg mb-1">Community First</h3>
+              <p class="text-white/50 text-sm">Built for everyone living Solana Life.</p>
+            </div>
+            <div class="rounded-2xl border border-sol-purple/25 bg-sol-card/90 p-5 card-hover">
+              <div class="text-2xl mb-2">💎</div>
+              <h3 class="font-display font-bold text-lg mb-1">Diamond Hands</h3>
+              <p class="text-white/50 text-sm">Hold strong. Live free. Stack $SOLLIFE.</p>
+            </div>
+            <div class="rounded-2xl border border-sol-purple/25 bg-sol-card/90 p-5 card-hover">
+              <div class="text-2xl mb-2">🌙</div>
+              <h3 class="font-display font-bold text-lg mb-1">24/7 Vibes</h3>
+              <p class="text-white/50 text-sm">Solana Life never sleeps — neither do we.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW TO BUY ===== -->
+  <section id="how-to-buy" class="relative py-20 md:py-28">
+    <div class="absolute inset-0 bg-sol-purple/5 pointer-events-none"></div>
+    <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 md:mb-16">
+        <p class="text-sol-purple font-display font-semibold text-sm tracking-[0.25em] uppercase mb-3">Get Started</p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+          How to Buy <span class="text-gradient">$SOLLIFE</span>
+        </h2>
+        <p class="text-white/55 text-lg max-w-2xl mx-auto">
+          Four simple steps. Use <span class="text-sol-green font-semibold">SOL</span> to buy
+          <span class="text-sol-purple font-semibold">Solana Life</span> and join the lifestyle.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-5">
+        <div class="relative group">
+          <div class="border-gradient rounded-3xl p-6 md:p-7 h-full glass card-hover">
+            <div class="flex items-center justify-between mb-5">
+              <span class="font-display font-black text-5xl text-gradient opacity-90">01</span>
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sol-green/20 to-sol-purple/10 border border-sol-green/30 flex items-center justify-center text-2xl shadow-glow-green">
+                👛
+              </div>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-3 group-hover:text-sol-green transition-colors">Create a Wallet</h3>
+            <p class="text-white/55 leading-relaxed text-[15px]">
+              Download a Solana wallet like <strong class="text-white">Phantom</strong> or <strong class="text-white">Solflare</strong>. Create a new wallet and securely save your seed phrase.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="border-gradient rounded-3xl p-6 md:p-7 h-full glass card-hover">
+            <div class="flex items-center justify-between mb-5">
+              <span class="font-display font-black text-5xl text-gradient opacity-90">02</span>
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sol-green/20 to-sol-purple/10 border border-sol-green/30 flex items-center justify-center text-2xl shadow-glow-green">
+                ◎
+              </div>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-3 group-hover:text-sol-green transition-colors">Get Some SOL</h3>
+            <p class="text-white/55 leading-relaxed text-[15px]">
+              Buy <strong class="text-sol-green">SOL</strong> on an exchange and withdraw it to your Solana wallet. You'll use SOL to buy Solana Life ($SOLLIFE).
+            </p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="border-gradient rounded-3xl p-6 md:p-7 h-full glass card-hover">
+            <div class="flex items-center justify-between mb-5">
+              <span class="font-display font-black text-5xl text-gradient opacity-90">03</span>
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sol-purple/25 to-sol-green/10 border border-sol-purple/35 flex items-center justify-center text-2xl shadow-glow-purple">
+                🔄
+              </div>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-3 group-hover:text-sol-purple transition-colors">Open Pump Swap</h3>
+            <p class="text-white/55 leading-relaxed text-[15px]">
+              Hit <strong class="text-white">Buy Now</strong> or open the official swap. Connect your wallet and verify the Solana Life CA.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="border-gradient rounded-3xl p-6 md:p-7 h-full glass card-hover">
+            <div class="flex items-center justify-between mb-5">
+              <span class="font-display font-black text-5xl text-gradient opacity-90">04</span>
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sol-purple/25 to-sol-green/10 border border-sol-purple/35 flex items-center justify-center text-2xl shadow-glow-purple">
+                🚀
+              </div>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-3 group-hover:text-sol-green transition-colors">Swap SOL → $SOLLIFE</h3>
+            <p class="text-white/55 leading-relaxed text-[15px]">
+              Select <strong class="text-sol-green">SOL</strong> as input and <strong class="text-white">$SOLLIFE</strong> as output. Confirm the swap — welcome to Solana Life.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-buy text-sol-deeper font-display font-bold text-sm px-8 py-3.5 rounded-full uppercase tracking-wider inline-flex items-center gap-2"
+        >
+          🛒 Buy Solana Life Now
+        </a>
+        <a
+          href="https://dexscreener.com/solana/TBA"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-chart text-white font-display font-bold text-sm px-8 py-3.5 rounded-full uppercase tracking-wider inline-flex items-center gap-2"
+        >
+          📈 View Chart
+        </a>
+      </div>
+
+      <div class="mt-10 max-w-3xl mx-auto rounded-2xl border border-sol-green/25 bg-sol-green/5 px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div class="shrink-0 w-12 h-12 rounded-xl bg-sol-green/15 border border-sol-green/30 flex items-center justify-center text-2xl">💡</div>
+        <div>
+          <p class="font-display font-bold text-sol-green mb-1">Pro tip — Solana Life safety</p>
+          <p class="text-white/60 text-sm sm:text-[15px] leading-relaxed">
+            Always copy the CA from this official Solana Life site or our Telegram / X. Never share your seed phrase. Leave a little SOL for fees.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIVE CHART (DexScreener embed) ===== -->
+  <section id="chart" class="relative py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10 md:mb-12">
+        <p class="text-sol-green font-display font-semibold text-sm tracking-[0.25em] uppercase mb-3">Live Market</p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+          <span class="text-gradient">Solana Life</span> Chart
+        </h2>
+        <p class="text-white/55 text-lg max-w-xl mx-auto mb-6">
+          Real-time $SOLLIFE price action on DexScreener. Track Solana Life as it moves.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="https://dexscreener.com/solana/TBA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-chart text-white font-display font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full uppercase tracking-wider inline-flex items-center gap-2"
+          >
+            Open Full Chart ↗
+          </a>
+          <a
+            href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-buy text-sol-deeper font-display font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full uppercase tracking-wider inline-flex items-center gap-2"
+          >
+            Buy Now
+          </a>
+        </div>
+      </div>
+
+      <div class="chart-frame rounded-2xl md:rounded-3xl overflow-hidden bg-sol-card">
+        <iframe
+          id="dexscreener-embed"
+          title="Solana Life DexScreener Chart"
+          src="https://dexscreener.com/solana/TBA?embed=1&theme=dark&trades=0&info=0"
+          class="w-full h-[420px] sm:h-[480px] md:h-[560px] lg:h-[620px] border-0"
+          loading="lazy"
+          allow="clipboard-write"
+        ></iframe>
+      </div>
+
+      <p class="text-center text-white/35 text-xs mt-4">
+        Chart powered by DexScreener · Pair will appear when Solana Life CA / pair is live
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== TOKENOMICS ===== -->
+  <section id="tokenomics" class="relative py-20 md:py-28">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-sol-purple/5 to-transparent pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <p class="text-sol-purple font-display font-semibold text-sm tracking-[0.25em] uppercase mb-3">Numbers</p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+          <span class="text-gradient">Solana Life</span> Tokenomics
+        </h2>
+        <p class="text-white/55 text-lg max-w-xl mx-auto">
+          Clean. Fair. Built for the Solana Life community.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+        <div class="rounded-3xl border border-sol-purple/25 bg-sol-card p-8 text-center card-hover relative overflow-hidden">
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-sol-green to-sol-purple"></div>
+          <p class="text-white/45 text-xs uppercase tracking-widest font-semibold mb-2">Token Name</p>
+          <p class="font-display font-bold text-2xl">Solana Life</p>
+        </div>
+        <div class="rounded-3xl border border-sol-purple/25 bg-sol-card p-8 text-center card-hover relative overflow-hidden">
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-sol-purple to-sol-green"></div>
+          <p class="text-white/45 text-xs uppercase tracking-widest font-semibold mb-2">Symbol</p>
+          <p class="font-display font-bold text-2xl text-sol-green">$SOLLIFE</p>
+        </div>
+        <div class="rounded-3xl border border-sol-purple/25 bg-sol-card p-8 text-center card-hover relative overflow-hidden">
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-sol-green to-sol-purple"></div>
+          <p class="text-white/45 text-xs uppercase tracking-widest font-semibold mb-2">Network</p>
+          <p class="font-display font-bold text-2xl">Solana</p>
+        </div>
+        <div class="rounded-3xl border border-sol-purple/25 bg-sol-card p-8 text-center card-hover relative overflow-hidden">
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-sol-purple to-sol-green"></div>
+          <p class="text-white/45 text-xs uppercase tracking-widest font-semibold mb-2">Buy With</p>
+          <p class="font-display font-bold text-2xl text-sol-purple">SOL</p>
+        </div>
+      </div>
+
+      <!-- CA again under tokenomics -->
+      <div class="max-w-2xl mx-auto ca-box rounded-2xl px-5 py-4 flex flex-col sm:flex-row items-center gap-3">
+        <div class="flex-1 text-center sm:text-left min-w-0">
+          <p class="text-xs uppercase tracking-widest text-white/40 font-semibold mb-1">Solana Life CA</p>
+          <code class="ca-display text-sol-green font-mono text-sm sm:text-base font-semibold break-all">TBA</code>
+        </div>
+        <button
+          type="button"
+          onclick="copyCA()"
+          class="shrink-0 inline-flex items-center gap-2 bg-sol-green hover:bg-sol-green/90 text-sol-deeper font-display font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all"
+        >
+          Copy CA
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMMUNITY ===== -->
+  <section id="community" class="relative py-20 md:py-28">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-sol-green/5 to-transparent pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <img src="logo.png" alt="Solana Life" class="w-20 h-20 mx-auto mb-6 animate-float drop-shadow-[0_0_24px_rgba(20,241,149,0.45)]" />
+      <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+        Join <span class="text-gradient">Solana Life</span>
+      </h2>
+      <p class="text-white/55 text-lg mb-10 max-w-xl mx-auto">
+        Connect with the Solana Life community. Alpha, memes, and vibes 24/7 — this is where Solana Life thrives.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-10">
+        <a
+          href="https://t.me/sollifeportal"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center gap-4 w-full sm:w-auto rounded-2xl border border-sol-purple/25 bg-sol-card hover:border-[#2AABEE]/50 px-6 py-5 transition-all card-hover"
+        >
+          <img src="tg.png" alt="Telegram" class="w-14 h-14 rounded-full shadow-lg group-hover:scale-110 transition-transform" />
+          <div class="text-left">
+            <p class="font-display font-bold text-lg">Telegram</p>
+            <p class="text-white/45 text-sm">t.me/sollifeportal</p>
+          </div>
+        </a>
+
+        <a
+          href="https://x.com/sollifex"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center gap-4 w-full sm:w-auto rounded-2xl border border-sol-purple/25 bg-sol-card hover:border-white/30 px-6 py-5 transition-all card-hover"
+        >
+          <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+            <img src="x.png" alt="X / Twitter" class="w-7 h-7" />
+          </div>
+          <div class="text-left">
+            <p class="font-display font-bold text-lg">X / Twitter</p>
+            <p class="text-white/45 text-sm">x.com/sollifex</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a
+          href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-buy text-sol-deeper font-display font-bold text-sm px-8 py-3.5 rounded-full uppercase tracking-wider"
+        >
+          Buy Solana Life
+        </a>
+        <a
+          href="https://dexscreener.com/solana/TBA"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-chart text-white font-display font-bold text-sm px-8 py-3.5 rounded-full uppercase tracking-wider"
+        >
+          Chart
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-sol-purple/20 bg-sol-deeper relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        <a href="#home" class="flex items-center gap-3">
+          <img src="logo.png" alt="Solana Life" class="w-12 h-12" />
+          <div>
+            <p class="font-display font-bold text-lg text-gradient">Solana Life</p>
+            <p class="text-xs text-white/40 tracking-widest">$SOLLIFE</p>
+          </div>
+        </a>
+
+        <div class="flex flex-wrap items-center justify-center gap-5 text-sm font-semibold text-white/50">
+          <a href="#about" class="hover:text-sol-green transition-colors">About</a>
+          <a href="#how-to-buy" class="hover:text-sol-green transition-colors">How to Buy</a>
+          <a href="#chart" class="hover:text-sol-green transition-colors">Chart</a>
+          <a href="#tokenomics" class="hover:text-sol-green transition-colors">Tokenomics</a>
+          <a href="#community" class="hover:text-sol-green transition-colors">Community</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="https://t.me/sollifeportal" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Telegram">
+            <img src="tg.png" alt="Telegram" class="w-10 h-10 rounded-full" />
+          </a>
+          <a href="https://x.com/sollifex" target="_blank" rel="noopener noreferrer" class="social-btn w-10 h-10 rounded-full bg-white flex items-center justify-center" aria-label="X">
+            <img src="x.png" alt="X" class="w-5 h-5 object-contain" />
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-10 pt-8 border-t border-sol-purple/15 text-center">
+        <p class="text-white/30 text-sm mb-2">
+          © 2026 Solana Life ($SOLLIFE). All rights reserved.
+        </p>
+        <p class="text-white/20 text-xs max-w-2xl mx-auto leading-relaxed">
+          Solana Life ($SOLLIFE) is a community meme token. Cryptocurrency involves risk. Always do your own research (DYOR).
+          This website is for entertainment and informational purposes only and does not constitute financial advice.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile bottom bar -->
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-40 nav-blur border-t border-sol-purple/20 px-2 py-2.5">
+    <div class="flex items-center justify-around">
+      <a href="#home" class="flex flex-col items-center gap-0.5 text-[10px] text-white/50 hover:text-sol-green">
+        <span class="text-lg">🏠</span> Home
+      </a>
+      <a
+        href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex flex-col items-center gap-0.5 text-[10px] text-sol-green font-semibold"
+      >
+        <span class="text-lg">🛒</span> Buy
+      </a>
+      <a href="#chart" class="flex flex-col items-center gap-0.5 text-[10px] text-white/50 hover:text-sol-green">
+        <span class="text-lg">📈</span> Chart
+      </a>
+      <a href="https://t.me/sollifeportal" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-0.5 text-[10px] text-white/50 hover:text-sol-green">
+        <img src="tg.png" alt="" class="w-6 h-6" /> TG
+      </a>
+      <a href="https://x.com/sollifex" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-0.5 text-[10px] text-white/50 hover:text-sol-green">
+        <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+          <img src="x.png" alt="" class="w-3.5 h-3.5 object-contain" />
+        </span>
+        X
+      </a>
+    </div>
+  </div>
+
+  <div class="md:hidden h-16"></div>
+
+  <script>
+    // Update this one value when CA launches — used by copy + displays
+    const SOLLIFE_CA = 'TBA';
+
+    function copyCA() {
+      const ca = SOLLIFE_CA;
+      const done = () => {
+        const toast = document.getElementById('copy-toast');
+        const label = document.getElementById('copy-btn-label');
+        if (toast) {
+          toast.style.opacity = '1';
+          toast.style.transform = 'translate(-50%, 0)';
+          toast.classList.remove('pointer-events-none');
+        }
+        if (label) label.textContent = 'Copied!';
+        setTimeout(() => {
+          if (toast) {
+            toast.style.opacity = '0';
+            toast.classList.add('pointer-events-none');
+          }
+          if (label) label.textContent = 'Copy CA';
+        }, 1800);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ca).then(done).catch(() => fallbackCopy(ca, done));
+      } else {
+        fallbackCopy(ca, done);
+      }
+    }
+
+    function fallbackCopy(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      cb();
+    }
+
+    // Keep CA displays in sync
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#ca-address, .ca-display').forEach((el) => {
+        el.textContent = SOLLIFE_CA;
+      });
+    });
+  </script>
+</body>
+</html>
